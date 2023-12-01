@@ -1,12 +1,11 @@
-import AutoLogin from "../../lib/Page/NewLogin/Pages/AutoLogin.svelte";
-import ExistingUser from "../../lib/Page/NewLogin/Pages/ExistingUser.svelte";
-import NewUser from "../../lib/Page/NewLogin/Pages/NewUser.svelte";
-import Selector from "../../lib/Page/NewLogin/Pages/Selector.svelte";
-import flush from "../login/flush";
-import type { State } from "../state/interfaces";
-import { applyState } from "../state/main";
+import { PrimaryState } from "$ts/states";
+import { State } from "$types/state";
+import AutoLogin from "../Components/Pages/AutoLogin.svelte";
+import ExistingUser from "../Components/Pages/ExistingUser.svelte";
+import NewUser from "../Components/Pages/NewUser.svelte";
+import Selector from "../Components/Pages/Selector.svelte";
 
-export const NewLoginStates = new Map<string, State>([
+export const LoginStates = new Map<string, State>([
   [
     "autologin",
     {
@@ -72,7 +71,7 @@ export const NewLoginStates = new Map<string, State>([
       key: "shutdown",
       onload() {
         setTimeout(() => {
-          applyState("turnedoff");
+          PrimaryState.navigate("turnedoff");
         }, 2000);
       },
     },
@@ -107,11 +106,7 @@ export const NewLoginStates = new Map<string, State>([
       },
       key: "logoff",
       onload() {
-        //localStorage.removeItem("arcos-remembered-token");
-
         setTimeout(() => {
-          flush();
-
           location.reload();
         }, 2000);
       },

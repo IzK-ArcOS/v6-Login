@@ -1,22 +1,21 @@
-import { get, writable } from "svelte/store";
-import { loginUsingCreds } from "../api/getter";
-import { ConnectedServer } from "../api/main";
-import { fromBase64, toBase64 } from "../base64";
-import { Log } from "../console";
-import { LogLevel } from "../console/interface";
-import sleep from "../sleep";
-import type { State } from "../state/interfaces";
-import { applyState } from "../state/main";
-import { AllUsers, UserData } from "../userlogic/interfaces";
-import { getUsers } from "../userlogic/main";
+import { fromBase64, toBase64 } from "$ts/base64";
+import { Log } from "$ts/console";
+import { Authenticate } from "$ts/server/user/auth";
+import { PrimaryState, StateHandler } from "$ts/states";
+import { ConnectedServer } from "$ts/stores/server";
+import { UserDataStore } from "$ts/stores/user";
+import { sleep } from "$ts/util";
+import { Store } from "$ts/writable";
+import { State } from "$types/state";
+import { AllUsers, type UserData } from "$types/user";
+import { get } from "svelte/store";
 
 export class Login {
-  public CurrentState = writable<State>();
-  public UserName = writable<string>();
-  public UserCache = writable<AllUsers>();
-  public userBackground = writable<string>("img15");
-  private _defaultState: string;
-  private _states: Map<string, State>;
+  public CurrentState = Store<State>();
+  public UserName = Store<string>();
+  public UserCache = Store<AllUsers>();
+  public userBackground = Store<string>("img15");
+  public stateHandler: StateHandler;
 
   constructor(
     states: Map<string, State>,
@@ -25,8 +24,7 @@ export class Login {
   ) {
     Log("newlogin/main.ts: Login.constructor", `Creating new login class`);
 
-    this._states = states;
-    this._defaultState = initialState;
+    this.stateHandler = new StateHandler("Login", states, initialState);
 
     this.UserCache.subscribe(() => this.updateLoginBackground());
     this.UserName.subscribe(() => this.updateLoginBackground());
@@ -35,10 +33,10 @@ export class Login {
   }
 
   private async onMount() {
-    const allUsers = await getUsers();
+    const allUsers = /* await getUsers() */ [];
     const remembered = localStorage.getItem("arcos-remembered-token");
-    const loginState = get(this.CurrentState);
-    const currentApi = get(ConnectedServer);
+    const loginState = PrimaryState.current.get();
+    const currentApi = ConnectedServer.get();
     const isFreshApi = !Object.keys(allUsers).length && !remembered;
     const stateIsIncoming = loginState
       ? loginState.key != "shutdown" && loginState.key != "restart"
@@ -50,23 +48,23 @@ export class Login {
     );
 
     if (isFreshApi) {
-      if (!currentApi) return applyState("fts");
+      if (!currentApi) return PrimaryState.navigate("fts");
 
-      return this.navigate("newuserauth");
+      return this.stateHandler.navigate("newuserauth");
     }
 
     if (!loginState)
-      this.navigate(remembered ? "autologin" : "existinguserauth");
+      this.stateHandler.navigate(remembered ? "autologin" : "existinguserauth");
     if (!remembered || !stateIsIncoming) return;
 
-    const username = fromBase64(remembered).split(":")[0];
+    const [username, password] = fromBase64(remembered).split(":");
 
     this.setUser(username);
 
-    const userdata = await loginUsingCreds(remembered);
+    const userdata = await this.Authenticate(username, password);
 
     if (!userdata) {
-      this.navigate("existinguserauth");
+      this.stateHandler.navigate("existinguserauth");
 
       localStorage.removeItem("arcos-remembered-token");
 
@@ -92,12 +90,12 @@ export class Login {
 
   public async Authenticate(username: string, password: string) {
     const token = toBase64(`${username}:${password}`);
-    const userdata = await loginUsingCreds(token);
+    const userdata = await Authenticate(username, password);
 
     if (!userdata) return false;
 
     localStorage.setItem("arcos-remembered-token", token);
-    UserData.set(userdata);
+    UserDataStore.set(userdata);
 
     this.setUser(username);
 
@@ -113,30 +111,14 @@ export class Login {
     this.UserName.set(username);
 
     this.setUser(username);
-    UserData.set(userdata as UserData);
+    UserDataStore.set(userdata as UserData);
 
     await sleep(delay);
 
-    applyState("desktop");
+    PrimaryState.navigate("desktop");
   }
 
   public setUser(username: string) {
     this.UserName.set(username);
-  }
-
-  navigate(state: string, fromInit = false) {
-    if (!this._states.has(state) && !fromInit) {
-      if (!fromInit) return this.navigate(this._defaultState);
-
-      return Log(
-        "newlogin/main.ts: Login.navigate",
-        `Can't use non-existent initial state ${this._defaultState}!`,
-        LogLevel.critical
-      );
-    }
-
-    Log("newlogin/main.ts: Login.navigate", `Navigating to ${state}`);
-
-    this.CurrentState.set(this._states.get(state));
   }
 }

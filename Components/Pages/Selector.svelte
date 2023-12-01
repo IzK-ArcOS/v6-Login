@@ -1,9 +1,9 @@
 <script lang="ts">
+  import User from "$state/Login/Components/Pages/Selector/User.svelte";
+  import { Login } from "$state/Login/ts/main";
+  import { getUsers } from "$ts/server/user/get";
+  import { sleep } from "$ts/util";
   import { onMount } from "svelte";
-  import { getUsers } from "../../../../ts/userlogic/main";
-  import User from "./Selector/User.svelte";
-  import type { Login } from "../../../../ts/newlogin/main";
-  import sleep from "../../../../ts/sleep";
 
   export let runtime: Login;
 
@@ -20,7 +20,7 @@
 
     await sleep(0);
 
-    runtime.navigate("newuserauth");
+    runtime.stateHandler.navigate("newuserauth");
   }
 </script>
 

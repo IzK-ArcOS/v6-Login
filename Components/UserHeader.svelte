@@ -1,8 +1,8 @@
 <script lang="ts">
+  import ProfilePicture from "$lib/Components/ProfilePicture.svelte";
   import { onMount } from "svelte";
-  import ProfilePicture from "../../ProfilePicture.svelte";
-  import type { Login } from "../../../ts/newlogin/main";
-  import { getUserPfp } from "../../../ts/api/pfp";
+  import { Login } from "$state/Login/ts/main";
+  import { getUserPfp } from "$ts/server/user/pfp";
 
   export let runtime: Login;
 

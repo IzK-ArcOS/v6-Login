@@ -1,16 +1,16 @@
 <script lang="ts">
+  import { Login } from "$state/Login/ts/main";
+  import { getUsers } from "$ts/server/user/get";
+  import { UserName } from "$ts/stores/user";
+  import { sleep } from "$ts/util";
+  import { State } from "$types/state";
   import { onMount } from "svelte";
-  import "../../css/newlogin.css";
-  import { Login } from "../../ts/newlogin/main";
-  import { NewLoginStates } from "../../ts/newlogin/store";
-  import type { State } from "../../ts/state/interfaces";
-  import Background from "./NewLogin/Background.svelte";
-  import Darken from "./NewLogin/Darken.svelte";
-  import Paging from "./NewLogin/Paging.svelte";
-  import Topbar from "./NewLogin/Topbar.svelte";
-  import { UserName } from "../../ts/userlogic/interfaces";
-  import sleep from "../../ts/sleep";
-  import { getUsers } from "../../ts/userlogic/main";
+  import Background from "./Components/Background.svelte";
+  import Darken from "./Components/Darken.svelte";
+  import Paging from "./Components/Paging.svelte";
+  import Topbar from "./Components/Topbar.svelte";
+  import "./css/newlogin.css";
+  import { LoginStates } from "./ts/store";
 
   export let thisState: State;
 
@@ -21,14 +21,14 @@
 
   onMount(async () => {
     runtime = new Login(
-      NewLoginStates,
+      LoginStates,
       "autologin",
       !thisState.attribs.continuation
     );
 
     if (thisState.attribs.continuation) {
       runtime.setUser($UserName);
-      runtime.navigate(thisState.attribs.continuation as string);
+      runtime.stateHandler.navigate(thisState.attribs.continuation as string);
     }
 
     runtime.UserCache.set(await getUsers());

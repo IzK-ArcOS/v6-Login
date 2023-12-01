@@ -1,10 +1,10 @@
 <script lang="ts">
   import { get } from "svelte/store";
-  import type { Login } from "../../../../ts/newlogin/main";
   import UserHeader from "../UserHeader.svelte";
   import WelcomeSpinner from "../WelcomeSpinner.svelte";
   import Actions from "./ExistingUser/Actions.svelte";
   import Incorrect from "./ExistingUser/Incorrect.svelte";
+  import { Login } from "$state/Login/ts/main";
 
   export let runtime: Login;
 

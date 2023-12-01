@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Login } from "../../../../ts/newlogin/main";
   import Loading from "../Loading.svelte";
   import { get, writable } from "svelte/store";
-  import Spinner from "../../../Spinner.svelte";
-  import { ARCOS_MODE } from "../../../../ts/branding";
   import { CurrentLogItem } from "../../../../ts/console";
+  import { ARCOS_MODE } from "$ts/metadata";
+  import Spinner from "$lib/Components/Spinner.svelte";
+  import { Login } from "$state/Login/ts/main";
 
   export let runtime: Login;
   export let key = "";

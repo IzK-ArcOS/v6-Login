@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { Login } from "../../../ts/newlogin/main";
-  import Spinner from "../../Spinner.svelte";
+  import { Login } from "$state/Login/ts/main";
   import UserHeader from "./UserHeader.svelte";
   import WelcomeSpinner from "./WelcomeSpinner.svelte";
 
