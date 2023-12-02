@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { State } from "$types/state";
-  import { onMount } from "svelte";
   import { Login } from "$state/Login/ts/main";
   import { getWallpaper } from "$ts/wallpaper";
+  import { State } from "$types/state";
+  import { onMount } from "svelte";
 
   export let state: State;
   export let runtime: Login;

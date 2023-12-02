@@ -1,12 +1,12 @@
 import { fromBase64, toBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { Authenticate } from "$ts/server/user/auth";
+import { getUsers } from "$ts/server/user/get";
 import { PrimaryState, StateHandler } from "$ts/states";
 import { ConnectedServer } from "$ts/stores/server";
 import { UserDataStore } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
-import { State } from "$types/state";
 import { AllUsers, type UserData } from "$types/user";
 import { get } from "svelte/store";
 import { LoginStates } from "./store";
@@ -20,7 +20,12 @@ export class Login {
   constructor(initialState: string, doOnMount = true) {
     Log("Login", `Creating new login class`);
 
-    this.stateHandler = new StateHandler("Login", LoginStates, initialState);
+    this.stateHandler = new StateHandler(
+      "Login",
+      LoginStates,
+      initialState,
+      false
+    );
 
     this.UserCache.subscribe(() => this.updateLoginBackground());
     this.UserName.subscribe(() => this.updateLoginBackground());
@@ -29,9 +34,9 @@ export class Login {
   }
 
   private async onMount() {
-    const allUsers = /* await getUsers() */ [];
+    const allUsers = await getUsers();
     const remembered = localStorage.getItem("arcos-remembered-token");
-    const loginState = PrimaryState.current.get();
+    const loginState = this.stateHandler.current.get();
     const currentApi = ConnectedServer.get();
     const isFreshApi = !Object.keys(allUsers).length && !remembered;
     const stateIsIncoming = loginState
@@ -68,6 +73,7 @@ export class Login {
   }
 
   private updateLoginBackground(v?: AllUsers) {
+    Log("Login", "Updating login background");
     v = v || get(this.UserCache);
 
     if (!v) return this.userBackground.set("img15");
@@ -82,6 +88,8 @@ export class Login {
   }
 
   public async Authenticate(username: string, password: string) {
+    Log("Login", `Authenticating as "${username}"`);
+
     const token = toBase64(`${username}:${password}`);
     const userdata = await Authenticate(username, password);
 
@@ -109,6 +117,8 @@ export class Login {
   }
 
   public setUser(username: string) {
+    Log("Login", `Setting user to ${username}`);
+
     this.UserName.set(username);
   }
 }

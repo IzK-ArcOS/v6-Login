@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Login } from "$state/Login/ts/main";
   import { writable } from "svelte/store";
   import UserHeader from "../UserHeader.svelte";
   import WelcomeSpinner from "../WelcomeSpinner.svelte";
@@ -6,7 +7,6 @@
   import Confirm from "./NewUser/Confirm.svelte";
   import Incorrect from "./NewUser/Incorrect.svelte";
   import UserPassword from "./NewUser/UserPassword.svelte";
-  import { Login } from "$state/Login/ts/main";
 
   export let runtime: Login;
 
