@@ -18,7 +18,7 @@ export class Login {
   public stateHandler: StateHandler;
 
   constructor(initialState: string, doOnMount = true) {
-    Log("newlogin/main.ts: Login.constructor", `Creating new login class`);
+    Log("Login", `Creating new login class`);
 
     this.stateHandler = new StateHandler("Login", LoginStates, initialState);
 
@@ -38,10 +38,7 @@ export class Login {
       ? loginState.key != "shutdown" && loginState.key != "restart"
       : true;
 
-    Log(
-      "newlogin/main.ts: Login.onMount",
-      `isFreshApi=${isFreshApi} StateIsIncoming=${stateIsIncoming}`
-    );
+    Log("Login", `isFreshApi=${isFreshApi} StateIsIncoming=${stateIsIncoming}`);
 
     if (isFreshApi) {
       if (!currentApi) return PrimaryState.navigate("fts");
@@ -99,10 +96,7 @@ export class Login {
   }
 
   public async proceed(userdata: Object, username: string, delay = 1500) {
-    Log(
-      "newlogin/main.ts: Login.proceed",
-      `Proceeding to desktop after ${delay / 1000} seconds`
-    );
+    Log("Login", `Proceeding to desktop after ${delay / 1000} seconds`);
 
     this.UserName.set(username);
 
