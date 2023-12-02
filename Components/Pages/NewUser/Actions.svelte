@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Login } from "../../../../../ts/newlogin/main";
-  import sleep from "../../../../../ts/sleep";
+  import { Login } from "$state/Login/ts/main";
+  import { sleep } from "$ts/util";
 
   export let runtime: Login;
 
@@ -9,7 +9,7 @@
 
     await sleep(0);
 
-    runtime.navigate("existinguserauth");
+    runtime.stateHandler.navigate("existinguserauth");
   }
 </script>
 

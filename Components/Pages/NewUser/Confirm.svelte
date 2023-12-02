@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Login } from "../../../../../ts/newlogin/main";
-  import { createUser } from "../../../../../ts/userlogic/mutate";
+  import { Login } from "$state/Login/ts/main";
+  import { createUser } from "$ts/server/user/mutate";
 
   export let username: string;
   export let password: string;

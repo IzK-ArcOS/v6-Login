@@ -9,22 +9,18 @@ import { Store } from "$ts/writable";
 import { State } from "$types/state";
 import { AllUsers, type UserData } from "$types/user";
 import { get } from "svelte/store";
+import { LoginStates } from "./store";
 
 export class Login {
-  public CurrentState = Store<State>();
   public UserName = Store<string>();
   public UserCache = Store<AllUsers>();
   public userBackground = Store<string>("img15");
   public stateHandler: StateHandler;
 
-  constructor(
-    states: Map<string, State>,
-    initialState: string,
-    doOnMount = true
-  ) {
+  constructor(initialState: string, doOnMount = true) {
     Log("newlogin/main.ts: Login.constructor", `Creating new login class`);
 
-    this.stateHandler = new StateHandler("Login", states, initialState);
+    this.stateHandler = new StateHandler("Login", LoginStates, initialState);
 
     this.UserCache.subscribe(() => this.updateLoginBackground());
     this.UserName.subscribe(() => this.updateLoginBackground());

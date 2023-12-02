@@ -1,9 +1,9 @@
 <script lang="ts">
+  import ProfilePicture from "$lib/Components/ProfilePicture.svelte";
+  import { Login } from "$state/Login/ts/main";
+  import { getProfilePicture } from "$ts/stores/pfp";
+  import { UserData } from "$types/user";
   import { onMount } from "svelte";
-  import type { Login } from "../../../../../ts/newlogin/main";
-  import type { UserData } from "../../../../../ts/userlogic/interfaces";
-  import { getProfilePicture } from "../../../../../ts/userlogic/pfp";
-  import ProfilePicture from "../../../../ProfilePicture.svelte";
 
   let pfp = "";
 
@@ -13,7 +13,7 @@
 
   async function go() {
     runtime.setUser(name);
-    runtime.navigate("existinguserauth");
+    runtime.stateHandler.navigate("existinguserauth");
   }
 
   onMount(() => {

@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
   import Loading from "../Loading.svelte";
   import { get, writable } from "svelte/store";
-  import { CurrentLogItem } from "../../../../ts/console";
   import { ARCOS_MODE } from "$ts/metadata";
   import Spinner from "$lib/Components/Spinner.svelte";
   import { Login } from "$state/Login/ts/main";
+  import { CurrentLogItem } from "$ts/console";
 
   export let runtime: Login;
   export let key = "";
@@ -28,7 +28,7 @@
   onMount(() => {
     const username = get(runtime.UserName);
 
-    full = !username || username == "ArcOS";
+    full = /*  !username || username == "ArcOS"; */ false;
   });
 </script>
 

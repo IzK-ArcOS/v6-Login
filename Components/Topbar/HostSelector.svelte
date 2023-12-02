@@ -1,13 +1,9 @@
 <script lang="ts">
+  import { Login } from "$state/Login/ts/main";
+  import { getAllServers, getServer, setServer } from "$ts/server/multi";
+  import { PrimaryState } from "$ts/states";
+  import { sleep } from "$ts/util";
   import { onMount } from "svelte";
-  import {
-    getAllServers,
-    getServer,
-    setServer,
-  } from "../../../../ts/api/server";
-  import type { Login } from "../../../../ts/newlogin/main";
-  import sleep from "../../../../ts/sleep";
-  import { applyState } from "../../../../ts/state/main";
 
   export let runtime: Login;
 
@@ -21,12 +17,12 @@
   async function changeServer() {
     await sleep(0);
 
-    if (selectedServer == "$new") return applyState("fts");
+    if (selectedServer == "$new") return PrimaryState.navigate("fts");
 
     setServer(selectedServer);
 
     runtime.UserName.set("ArcOS");
-    runtime.navigate("restart");
+    runtime.stateHandler.navigate("restart");
   }
 </script>
 

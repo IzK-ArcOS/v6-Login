@@ -5,6 +5,7 @@
 @import url("./newlogin/page/existinguser.css");
 @import url("./newlogin/page/selector.css");
 @import url("./newlogin/password.css");
+@import url("./newlogin/full.css");
 
 div.newlogin {
   background-color: #000;

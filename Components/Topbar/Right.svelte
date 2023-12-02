@@ -1,16 +1,16 @@
 <script lang="ts">
-  import type { Login } from "../../../../ts/newlogin/main";
+  import { Login } from "$state/Login/ts/main";
 
   export let runtime: Login;
 
   function shutdown() {
     runtime.UserName.set("ArcOS");
-    runtime.navigate("shutdown");
+    runtime.stateHandler.navigate("shutdown");
   }
 
   function restart() {
     runtime.UserName.set("ArcOS");
-    runtime.navigate("restart");
+    runtime.stateHandler.navigate("restart");
   }
 </script>
 

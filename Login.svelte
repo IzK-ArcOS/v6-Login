@@ -10,7 +10,6 @@
   import Paging from "./Components/Paging.svelte";
   import Topbar from "./Components/Topbar.svelte";
   import "./css/newlogin.css";
-  import { LoginStates } from "./ts/store";
 
   export let thisState: State;
 
@@ -20,11 +19,7 @@
   let show = false;
 
   onMount(async () => {
-    runtime = new Login(
-      LoginStates,
-      "autologin",
-      !thisState.attribs.continuation
-    );
+    runtime = new Login("autologin", !thisState.attribs.continuation);
 
     if (thisState.attribs.continuation) {
       runtime.setUser($UserName);
@@ -37,7 +32,7 @@
 
     show = true;
 
-    runtime.CurrentState.subscribe((v) => {
+    runtime.stateHandler.current.subscribe((v) => {
       if (!v) return;
 
       state = v;
