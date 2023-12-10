@@ -90,13 +90,9 @@ export class Login {
   public async Authenticate(username: string, password: string) {
     Log("Login", `Authenticating as "${username}"`);
 
-    const token = toBase64(`${username}:${password}`);
     const userdata = await Authenticate(username, password);
 
     if (!userdata) return false;
-
-    localStorage.setItem("arcos-remembered-token", token);
-    UserDataStore.set(userdata);
 
     this.setUser(username);
 
@@ -109,7 +105,6 @@ export class Login {
     this.UserName.set(username);
 
     this.setUser(username);
-    UserDataStore.set(userdata as UserData);
 
     await sleep(delay);
 
