@@ -69,7 +69,7 @@ export class Login {
       return;
     }
 
-    this.proceed(userdata, username);
+    this.proceed(username);
   }
 
   private updateLoginBackground(v?: AllUsers) {
@@ -99,8 +99,10 @@ export class Login {
     return userdata;
   }
 
-  public async proceed(userdata: Object, username: string, delay = 1500) {
+  public async proceed(username: string, userdata?: UserData, delay = 1500) {
     Log("Login", `Proceeding to desktop after ${delay / 1000} seconds`);
+
+    if (userdata) UserDataStore.set(userdata);
 
     this.UserName.set(username);
 

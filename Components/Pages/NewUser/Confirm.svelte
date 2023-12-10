@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Login } from "$state/Login/ts/main";
+  import { Authenticate } from "$ts/server/user/auth";
   import { createUser } from "$ts/server/user/mutate";
 
   export let username: string;
@@ -13,16 +14,18 @@
   async function createAccount() {
     loading = true;
 
-    const userdata = await createUser(username, password);
+    const created = await createUser(username, password);
 
-    if (!userdata) {
+    if (!created) {
       errored = true;
       loading = false;
 
       return false;
     }
 
-    runtime.proceed(userdata, username);
+    await Authenticate(username, password);
+
+    runtime.proceed(username);
 
     return false;
   }

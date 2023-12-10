@@ -26,7 +26,7 @@
       return;
     }
 
-    await runtime.proceed(userdata, username);
+    await runtime.proceed(username);
   }
 
   function setUsername() {
