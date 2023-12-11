@@ -26,8 +26,6 @@
       runtime.stateHandler.navigate(thisState.attribs.continuation as string);
     }
 
-    runtime.UserCache.set(await getUsers());
-
     await sleep(500);
 
     show = true;

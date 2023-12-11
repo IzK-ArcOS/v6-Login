@@ -43,6 +43,8 @@ export class Login {
       ? loginState.key != "shutdown" && loginState.key != "restart"
       : true;
 
+    this.UserCache.set(allUsers);
+
     Log("Login", `isFreshApi=${isFreshApi} StateIsIncoming=${stateIsIncoming}`);
 
     if (isFreshApi) {
