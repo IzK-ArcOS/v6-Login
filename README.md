@@ -5,6 +5,7 @@ This repository is a submodule of [ArcOS v6](https://github.com/IzK-ArcOS/v6). I
 ## Dependencies
 
 v6 submodules depend on various assets and APIs from the parent v6 codebase. This specific submodule's dependencies can be found [here](./DEPS.md).
+
 ## Original Author
 
 @IzKuipers [e-mail](mailto:izaak@arcapi.nl)

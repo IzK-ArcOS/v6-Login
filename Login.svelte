@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Login } from "$state/Login/ts/main";
-  import { getUsers } from "$ts/server/user/get";
   import { UserName } from "$ts/stores/user";
   import { sleep } from "$ts/util";
   import { State } from "$types/state";

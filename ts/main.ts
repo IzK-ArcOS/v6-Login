@@ -1,4 +1,4 @@
-import { fromBase64, toBase64 } from "$ts/base64";
+import { fromBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { Authenticate } from "$ts/server/user/auth";
 import { getUsers } from "$ts/server/user/get";
