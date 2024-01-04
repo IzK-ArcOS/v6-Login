@@ -7,7 +7,7 @@
   async function register() {
     runtime.setUser(null);
 
-    await sleep(0);
+    await sleep();
 
     runtime.stateHandler.navigate("newuserauth");
   }
@@ -15,7 +15,7 @@
   async function switchUser() {
     runtime.setUser(null);
 
-    await sleep(0);
+    await sleep();
 
     runtime.stateHandler.navigate("selector");
   }

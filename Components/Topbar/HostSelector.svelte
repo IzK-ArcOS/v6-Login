@@ -15,7 +15,7 @@
   });
 
   async function changeServer() {
-    await sleep(0);
+    await sleep();
 
     if (selectedServer == "$new") return PrimaryState.navigate("fts");
 

@@ -18,7 +18,7 @@
   async function register() {
     runtime.setUser(null);
 
-    await sleep(0);
+    await sleep();
 
     runtime.stateHandler.navigate("newuserauth");
   }

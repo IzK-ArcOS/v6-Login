@@ -7,7 +7,7 @@
   async function existing() {
     runtime.setUser(null);
 
-    await sleep(0);
+    await sleep();
 
     runtime.stateHandler.navigate("existinguserauth");
   }
