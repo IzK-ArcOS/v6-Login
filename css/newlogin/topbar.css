@@ -64,7 +64,7 @@ div.newlogin div.hostname {
 div.newlogin select.host {
   background-color: transparent;
   border: none;
-  font-size: 14px;
+  font-size: var(--font-size);
   padding-right: 10px;
   background-color: #0000;
   width: fit-content;
