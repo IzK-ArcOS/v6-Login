@@ -28,7 +28,7 @@
   onMount(() => {
     const username = get(runtime.UserName);
 
-    full = /*  !username || username == "ArcOS"; */ false;
+    full = !username || username == "ArcOS";
   });
 </script>
 
