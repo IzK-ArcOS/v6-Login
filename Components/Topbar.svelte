@@ -1,13 +1,13 @@
 <script lang="ts">
   import { Login } from "$state/Login/ts/main";
-  import { State } from "$types/state";
+  import { LoginState } from "$types/state";
   import { onMount } from "svelte";
   import Clock from "./Topbar/Clock.svelte";
   import HostSelector from "./Topbar/HostSelector.svelte";
   import Right from "./Topbar/Right.svelte";
 
   export let runtime: Login;
-  export let state: State;
+  export let state: LoginState;
 
   let show = false;
 

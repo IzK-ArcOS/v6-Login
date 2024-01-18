@@ -1,11 +1,13 @@
 import { PrimaryState } from "$ts/states";
-import { State } from "$types/state";
+import { sleep } from "$ts/util";
+import { LoginState } from "$types/state";
 import AutoLogin from "../Components/Pages/AutoLogin.svelte";
 import ExistingUser from "../Components/Pages/ExistingUser.svelte";
 import NewUser from "../Components/Pages/NewUser.svelte";
 import Selector from "../Components/Pages/Selector.svelte";
+import { Login } from "./main";
 
-export const LoginStates = new Map<string, State>([
+export const LoginStates = new Map<string, LoginState>([
   [
     "autologin",
     {
@@ -105,11 +107,21 @@ export const LoginStates = new Map<string, State>([
         className: "center-flex",
       },
       key: "logoff",
-      onload() {
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
-      },
+      async onload(runtime: Login) {
+        runtime.userBackground.set(null);
+        /* runtime.UserCache.set(null); */
+        /* runtime.UserName.set(UserName.get()); */
+
+        runtime.lockBackground()
+
+        await sleep(2000);
+
+        runtime.stateHandler.navigate("selector");
+
+        await sleep(200);
+
+        runtime.unlockBackground();
+      }
     },
   ],
 ]);

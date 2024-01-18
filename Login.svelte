@@ -2,7 +2,7 @@
   import { Login } from "$state/Login/ts/main";
   import { UserName } from "$ts/stores/user";
   import { sleep } from "$ts/util";
-  import { State } from "$types/state";
+  import { LoginState, State } from "$types/state";
   import { onMount } from "svelte";
   import Background from "./Components/Background.svelte";
   import Darken from "./Components/Darken.svelte";
@@ -10,10 +10,10 @@
   import Topbar from "./Components/Topbar.svelte";
   import "./css/newlogin.css";
 
-  export let thisState: State;
+  export let thisState: LoginState;
 
   let runtime: Login;
-  let state: State;
+  let state: LoginState;
 
   let show = false;
 
@@ -34,7 +34,7 @@
 
       state = v;
 
-      if (state.onload) state.onload();
+      if (state.onload) state.onload(runtime);
     });
   });
 </script>

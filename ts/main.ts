@@ -2,29 +2,31 @@ import { fromBase64 } from "$ts/base64";
 import { Log } from "$ts/console";
 import { Authenticate } from "$ts/server/user/auth";
 import { getUsers } from "$ts/server/user/get";
-import { PrimaryState, StateHandler } from "$ts/states";
+import { PrimaryState } from "$ts/states";
 import { ConnectedServer } from "$ts/stores/server";
 import { UserDataStore } from "$ts/stores/user";
 import { sleep } from "$ts/util";
 import { Store } from "$ts/writable";
 import { AllUsers, type UserData } from "$types/user";
 import { get } from "svelte/store";
+import { LoginStateHandler } from "./state";
 import { LoginStates } from "./store";
 
 export class Login {
   public UserName = Store<string>();
   public UserCache = Store<AllUsers>();
   public userBackground = Store<string>("img15");
-  public stateHandler: StateHandler;
+  public stateHandler: LoginStateHandler;
+  public backgroundLocked = false;
 
   constructor(initialState: string, doOnMount = true) {
     Log("Login", `Creating new login class`);
 
-    this.stateHandler = new StateHandler(
+    this.stateHandler = new LoginStateHandler(
       "Login",
       LoginStates,
       initialState,
-      false
+      this
     );
 
     this.UserCache.subscribe(() => this.updateLoginBackground());
@@ -74,8 +76,24 @@ export class Login {
     this.proceed(username);
   }
 
+  public lockBackground() {
+    this.backgroundLocked = true;
+  }
+
+
+  public unlockBackground() {
+    this.backgroundLocked = false;
+  }
+
   private updateLoginBackground(v?: AllUsers) {
     Log("Login", "Updating login background");
+
+    if (this.backgroundLocked) {
+      this.userBackground.set("img15");
+
+      return;
+    }
+
     v = v || get(this.UserCache);
 
     if (!v) return this.userBackground.set("img15");
@@ -119,5 +137,7 @@ export class Login {
     Log("Login", `Setting user to ${username}`);
 
     this.UserName.set(username);
+    this.updateLoginBackground();
+
   }
 }

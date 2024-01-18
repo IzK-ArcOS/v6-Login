@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { State } from "$types/state";
+  import { LoginState } from "$types/state";
 
-  export let state: State;
+  export let state: LoginState;
 </script>
 
 {#if state}
