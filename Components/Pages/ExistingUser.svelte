@@ -49,14 +49,16 @@
           on:keydown={keydown}
           on:keyup={setUsername}
           bind:value={username}
+          placeholder="Username"
         />
       </div>
-      <div class="field-wrapper">
+      <div class="field-wrapper continue">
         <input
           type="password"
           bind:value={password}
           disabled={loading}
           on:keydown={keydown}
+          placeholder="Password"
         />
         <button
           class="material-icons-round continue"

@@ -35,7 +35,7 @@
   }
 </script>
 
-<div class="field-wrapper">
+<div class="field-wrapper continue">
   <input
     type="password"
     placeholder="Confirm Password"

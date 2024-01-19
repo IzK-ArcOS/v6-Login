@@ -11,6 +11,14 @@ div.newlogin {
   background-color: #000;
   transition: opacity 0.3s;
   opacity: 0;
+  font-size: var(--font-size);
+  --font-size: 15px;
+}
+
+div.newlogin button,
+div.newlogin input,
+div.newlogin select {
+  font-size: var(--font-size);
 }
 
 div.newlogin > * {

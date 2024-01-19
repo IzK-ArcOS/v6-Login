@@ -23,5 +23,5 @@
 
 <button class="normal switchuser" on:click={switchUser}>Show Picker</button>
 <button class="normal link createaccount" on:click={register}>
-  I have no account
+  Create account
 </button>

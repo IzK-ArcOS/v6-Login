@@ -2,7 +2,7 @@
   export let errored: boolean;
 </script>
 
-<p class="incorrect">The password is incorrect. Try again.</p>
+<p class="incorrect">The username or password is incorrect.</p>
 <button class="normal switchuser" on:click={() => (errored = false)}>
-  Okay
+  Try again
 </button>
