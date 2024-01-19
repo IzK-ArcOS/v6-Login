@@ -12,3 +12,7 @@ div.login-loading input.field {
   width: 220px;
   padding: 0 10px;
 }
+
+div.login-loading input.field::placeholder {
+  opacity: 0.5;
+}
