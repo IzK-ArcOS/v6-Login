@@ -3,21 +3,20 @@
   import { Login } from "$state/Login/ts/main";
   import { Logo } from "$ts/branding";
   import { getUserPfp } from "$ts/server/user/pfp";
-  import { onMount } from "svelte";
 
   export let runtime: Login;
 
   let pfp = "";
   let username = "ArcOS";
 
-  onMount(() =>
-    runtime.UserName.subscribe(async (v) => {
-      if (!v) return;
+  const { UserName } = runtime;
 
-      username = v;
-      pfp = await getUserPfp(v, Logo());
-    })
-  );
+  UserName.subscribe(async (v) => {
+    if (!v) return;
+
+    username = v;
+    pfp = await getUserPfp(v, Logo());
+  });
 </script>
 
 <ProfilePicture src={pfp} height={151} fallback={Logo()} />

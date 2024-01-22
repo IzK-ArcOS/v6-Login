@@ -7,12 +7,14 @@
 
   export let runtime: Login;
 
+  const { UserCache } = runtime;
+
   let users;
 
   onMount(async () => {
-    runtime.UserCache.subscribe((v) => v && (users = v));
+    UserCache.subscribe((v) => v && (users = v));
 
-    runtime.UserCache.set(await getUsers());
+    UserCache.set(await getUsers());
   });
 
   async function register() {
