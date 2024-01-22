@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Login } from "$state/Login/ts/main";
-  import { LoginState, State } from "$types/state";
+  import { LoginState } from "$types/state";
 
   export let state: LoginState;
   export let runtime: Login;

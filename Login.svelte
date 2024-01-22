@@ -2,7 +2,7 @@
   import { Login } from "$state/Login/ts/main";
   import { UserName } from "$ts/stores/user";
   import { sleep } from "$ts/util";
-  import { LoginState, State } from "$types/state";
+  import { LoginState } from "$types/state";
   import { onMount } from "svelte";
   import Background from "./Components/Background.svelte";
   import Darken from "./Components/Darken.svelte";
