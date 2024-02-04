@@ -130,6 +130,8 @@ export class Login {
 
     await sleep(delay);
 
+    console.log("GOING TO DESKTOP AT ", new Date().getTime());
+
     PrimaryState.navigate("desktop");
   }
 
