@@ -125,12 +125,9 @@ export class Login {
     if (userdata) UserDataStore.set(userdata);
 
     this.UserName.set(username);
-
     this.setUser(username);
 
     await sleep(delay);
-
-    console.log("GOING TO DESKTOP AT ", new Date().getTime());
 
     PrimaryState.navigate("desktop");
   }
