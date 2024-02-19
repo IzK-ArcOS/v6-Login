@@ -39,7 +39,7 @@
 </script>
 
 <div class="login-loading">
-  <UserHeader {runtime} />
+  <UserHeader {runtime} override="Login" />
   {#if !loading}
     {#if !errored}
       <div class="field-wrapper">
@@ -60,11 +60,7 @@
           on:keydown={keydown}
           placeholder="Password"
         />
-        <button
-          class="material-icons-round continue"
-          on:click={login}
-          disabled={!password}
-        >
+        <button class="material-icons-round continue" on:click={login} disabled={!password}>
           arrow_forward_ios
         </button>
       </div>

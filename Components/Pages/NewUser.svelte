@@ -19,17 +19,11 @@
 </script>
 
 <div class="login-loading">
-  <UserHeader {runtime} />
+  <UserHeader {runtime} override="New User" />
   {#if !loading}
     {#if !errored}
       <UserPassword {loading} bind:username={$username} bind:password />
-      <Confirm
-        username={$username}
-        {password}
-        bind:loading
-        bind:errored
-        {runtime}
-      />
+      <Confirm username={$username} {password} bind:loading bind:errored {runtime} />
       <Actions {runtime} />
     {:else}
       <Incorrect bind:errored />

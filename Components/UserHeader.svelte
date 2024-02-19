@@ -5,19 +5,20 @@
   import { getUserPfp } from "$ts/server/user/pfp";
 
   export let runtime: Login;
+  export let override = "";
 
   let pfp = "";
   let username = "ArcOS";
 
-  const { UserName } = runtime;
+  const { UserName, UserCache } = runtime;
 
   UserName.subscribe(async (v) => {
-    if (!v) return;
+    /*     if (!v) return; */
 
     username = v;
-    pfp = await getUserPfp(v, Logo());
+    pfp = await getUserPfp(v, Logo(), $UserCache);
   });
 </script>
 
 <ProfilePicture src={pfp} height={151} fallback={Logo()} />
-<h1>{username}</h1>
+<h1>{!username || username == "ArcOS" ? override : username}</h1>

@@ -5,7 +5,8 @@
 div.login-loading {
   text-align: center;
   height: 390px !important;
-  width: 265px !important;
+  width: fit-content !important;
+  justify-content: center;
 }
 
 div.login-loading h1 {
@@ -13,4 +14,7 @@ div.login-loading h1 {
   margin: 10px;
   height: 38px;
   line-height: 38px;
+  white-space: nowrap;
+  text-align: center;
+  min-width: fit-content;
 }
