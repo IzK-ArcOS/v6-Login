@@ -23,7 +23,7 @@
 
 {#if data.acc.enabled}
   <button class="user" on:click={go}>
-    <ProfilePicture src={pfp} height={76} />
+    <ProfilePicture src={pfp} height={50} />
     <p class="username">{name}</p>
   </button>
 {/if}
