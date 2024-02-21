@@ -13,10 +13,7 @@ export class LoginStateWatcher {
 
   public watch(event: (state: LoginState) => any) {
     const id = this.handler.id;
-    Log(
-      "state/watch",
-      `LoginStateWatcher.watch ${id}: Adding watcher: ${event.toString()}`
-    );
+    Log("state/watch", `LoginStateWatcher.watch ${id}: Adding watcher: ${event.toString()}`);
 
     WATCHERS.push(event);
 

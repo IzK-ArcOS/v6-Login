@@ -112,7 +112,7 @@ export const LoginStates = new Map<string, LoginState>([
         /* runtime.UserCache.set(null); */
         /* runtime.UserName.set(UserName.get()); */
 
-        runtime.lockBackground()
+        runtime.lockBackground();
 
         await sleep(2000);
 
@@ -121,7 +121,7 @@ export const LoginStates = new Map<string, LoginState>([
         await sleep(200);
 
         runtime.unlockBackground();
-      }
+      },
     },
   ],
 ]);

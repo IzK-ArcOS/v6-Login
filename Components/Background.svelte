@@ -20,9 +20,5 @@
 </script>
 
 {#if state}
-  <div
-    class="background fullscreen"
-    {style}
-    class:zoom={state.attribs.darken}
-  />
+  <div class="background fullscreen" {style} class:zoom={state.attribs.darken} />
 {/if}

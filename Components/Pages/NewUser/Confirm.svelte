@@ -46,11 +46,7 @@
   <button
     class="material-icons-round continue"
     on:click={createAccount}
-    disabled={loading ||
-      !username ||
-      !password ||
-      !confirm ||
-      password !== confirm}
+    disabled={loading || !username || !password || !confirm || password !== confirm}
   >
     arrow_forward_ios
   </button>

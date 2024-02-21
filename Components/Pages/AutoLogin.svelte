@@ -21,8 +21,7 @@
   };
 
   CurrentLogItem.subscribe((v) => {
-    $caption =
-      ARCOS_MODE == "development" ? v.msg : CAPTIONS[key || "autologin"];
+    $caption = ARCOS_MODE == "development" ? v.msg : CAPTIONS[key || "autologin"];
   });
 
   onMount(() => {

@@ -22,12 +22,7 @@ export class Login {
   constructor(initialState: string, doOnMount = true) {
     Log("Login", `Creating new login class`);
 
-    this.stateHandler = new LoginStateHandler(
-      "Login",
-      LoginStates,
-      initialState,
-      this
-    );
+    this.stateHandler = new LoginStateHandler("Login", LoginStates, initialState, this);
 
     this.UserCache.subscribe(() => this.updateLoginBackground());
     this.UserName.subscribe(() => this.updateLoginBackground());
@@ -55,8 +50,7 @@ export class Login {
       return this.stateHandler.navigate("newuserauth");
     }
 
-    if (!loginState)
-      this.stateHandler.navigate(remembered ? "autologin" : "existinguserauth");
+    if (!loginState) this.stateHandler.navigate(remembered ? "autologin" : "existinguserauth");
     if (!remembered || !stateIsIncoming) return;
 
     const [username, password] = fromBase64(remembered).split(":");
@@ -80,7 +74,6 @@ export class Login {
     this.backgroundLocked = true;
   }
 
-
   public unlockBackground() {
     this.backgroundLocked = false;
   }
@@ -101,8 +94,7 @@ export class Login {
     const username = get(this.UserName);
     const user = v[username];
 
-    if (!user || !user.acc || !user.acc.loginBackground)
-      return this.userBackground.set("img15");
+    if (!user || !user.acc || !user.acc.loginBackground) return this.userBackground.set("img15");
 
     this.userBackground.set(user.acc.loginBackground);
   }
@@ -137,6 +129,5 @@ export class Login {
 
     this.UserName.set(username);
     this.updateLoginBackground();
-
   }
 }

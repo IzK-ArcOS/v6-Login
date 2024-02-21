@@ -13,6 +13,4 @@
   }
 </script>
 
-<button class="normal link createaccount" on:click={existing}>
-  I have an account
-</button>
+<button class="normal link createaccount" on:click={existing}> I have an account </button>

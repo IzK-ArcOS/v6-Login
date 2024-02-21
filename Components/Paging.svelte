@@ -7,15 +7,7 @@
 </script>
 
 {#if state}
-  <div
-    class="login-page fullscreen page-{state.key} {state.attribs.className ||
-      ''}"
-  >
-    <svelte:component
-      this={state.content}
-      {runtime}
-      key={state.key}
-      loginState={state}
-    />
+  <div class="login-page fullscreen page-{state.key} {state.attribs.className || ''}">
+    <svelte:component this={state.content} {runtime} key={state.key} loginState={state} />
   </div>
 {/if}
