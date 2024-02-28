@@ -111,10 +111,6 @@ export const LoginStates = new Map<string, LoginState>([
         await sleep(2000);
 
         runtime.stateHandler.navigate("selector");
-
-        await sleep(200);
-
-        runtime.unlockBackground();
       },
     },
   ],

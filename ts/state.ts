@@ -44,6 +44,8 @@ export class LoginStateHandler {
 
     this.current.set(state);
 
+    this.runtime.updateLoginBackground();
+
     return true;
   }
 }

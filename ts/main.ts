@@ -17,7 +17,7 @@ export class Login {
   public UserCache = Store<AllUsers>();
   public userBackground = Store<string>("img15");
   public stateHandler: LoginStateHandler;
-  public backgroundLocked = false;
+  public wallpapered = ["autologin", "existinguserauth", "logoff", "restart", "shutdown"];
 
   constructor(initialState: string, doOnMount = true) {
     Log("Login", `Creating new login class`);
@@ -70,18 +70,15 @@ export class Login {
     this.proceed(username);
   }
 
-  public lockBackground() {
-    this.backgroundLocked = true;
-  }
-
-  public unlockBackground() {
-    this.backgroundLocked = false;
-  }
-
-  private updateLoginBackground(v?: AllUsers) {
+  public updateLoginBackground(v?: AllUsers) {
     Log("Login", "Updating login background");
 
-    if (this.backgroundLocked) {
+    const current = this.stateHandler.current.get();
+
+    console.log(current);
+
+    if (current && !this.wallpapered.includes(current.key)) {
+      console.log("RESETTINGS");
       this.userBackground.set("img15");
 
       return;
