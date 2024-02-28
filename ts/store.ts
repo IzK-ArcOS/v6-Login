@@ -108,12 +108,6 @@ export const LoginStates = new Map<string, LoginState>([
       },
       key: "logoff",
       async onload(runtime: Login) {
-        runtime.userBackground.set(null);
-        /* runtime.UserCache.set(null); */
-        /* runtime.UserName.set(UserName.get()); */
-
-        runtime.lockBackground();
-
         await sleep(2000);
 
         runtime.stateHandler.navigate("selector");
