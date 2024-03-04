@@ -40,10 +40,21 @@ div.newlogin div.page-selector div.users button.user div.pfprenderer {
 
 div.newlogin div.page-selector div.users button.user p {
   margin-bottom: 0;
+  margin-top: 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+div.newlogin div.page-selector div.users button.user p img {
+  height: 16px;
+}
+
+div.newlogin div.page-selector div.users button.user span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 5px;
 }
 
 div.newlogin div.page-selector button.register {
