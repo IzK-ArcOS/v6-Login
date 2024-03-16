@@ -9,6 +9,7 @@
   import Paging from "./Components/Paging.svelte";
   import Topbar from "./Components/Topbar.svelte";
   import "./css/newlogin.css";
+  import { SafeMode } from "$state/Desktop/ts/store";
 
   export let thisState: LoginState;
 
@@ -40,7 +41,7 @@
 </script>
 
 {#if runtime}
-  <div class="newlogin fullscreen" class:show>
+  <div class="newlogin fullscreen" class:show class:safemode={$SafeMode}>
     <Background {state} {runtime} />
     <Darken {state} />
     <Topbar {state} {runtime} />

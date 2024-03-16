@@ -9,3 +9,6 @@ div.newlogin div.background.zoom {
   transform: scale(1.2);
   filter: brightness(0.9);
 }
+div.newlogin.safemode div.background {
+  background-image: none !important;
+}
