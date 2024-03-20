@@ -49,6 +49,7 @@ div.newlogin div.page-selector div.users button.user p {
 
 div.newlogin div.page-selector div.users button.user p img {
   height: 16px;
+  min-width: 16px;
 }
 
 div.newlogin div.page-selector div.users button.user span {
