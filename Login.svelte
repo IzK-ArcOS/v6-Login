@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SafeMode } from "$state/Desktop/ts/store";
   import { Login } from "$state/Login/ts/main";
   import { UserName } from "$ts/stores/user";
   import { sleep } from "$ts/util";
@@ -9,7 +10,6 @@
   import Paging from "./Components/Paging.svelte";
   import Topbar from "./Components/Topbar.svelte";
   import "./css/newlogin.css";
-  import { SafeMode } from "$state/Desktop/ts/store";
 
   export let thisState: LoginState;
 
