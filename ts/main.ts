@@ -75,10 +75,7 @@ export class Login {
 
     const current = this.stateHandler.current.get();
 
-    console.log(current);
-
     if (current && !this.wallpapered.includes(current.key)) {
-      console.log("RESETTINGS");
       this.userBackground.set("img15");
 
       return;
