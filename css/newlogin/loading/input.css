@@ -4,7 +4,7 @@ div.login-loading input.field {
   border: var(--button-glass-bg) 1px solid;
   background-color: #ffffff18;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--win-border-rad);
   backdrop-filter: blur(var(--glass-blur));
   display: block;
   margin: 0 auto;

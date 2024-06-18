@@ -16,7 +16,7 @@ div.newlogin div.page-selector div.users button {
   box-sizing: border-box;
   padding: 0;
   text-shadow: #000 1px 0 5px;
-  border-radius: 10px;
+  border-radius: var(--win-border-rad);
   padding: 10px 0px;
   transition: background-color 0.15s, opacity 0.3s;
   font-size: var(--font-size);

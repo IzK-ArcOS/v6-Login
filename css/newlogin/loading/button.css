@@ -5,7 +5,7 @@ div.newlogin button.normal {
   background-color: #ffffff08;
   color: #ccc;
   backdrop-filter: blur(var(--glass-blur));
-  border-radius: 7.5px;
+  border-radius: var(--button-border-rad);
   border: var(--button-glass-bg) 1px solid;
 }
 
