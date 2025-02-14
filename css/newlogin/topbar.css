@@ -2,12 +2,15 @@ div.newlogin div.topbar div.right button.nopad {
   width: 28px;
   height: 28px;
   box-sizing: border-box;
-  border-radius: 200px;
+  border-radius: 14px;
   background-color: transparent;
   margin-left: 0px;
   color: #eee;
   border: none;
   padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div.newlogin div.topbar div.right button.nopad:hover {
@@ -17,6 +20,7 @@ div.newlogin div.topbar div.right button.nopad:hover {
 div.newlogin div.topbar div.right button.nopad span.material-icons-round {
   padding: 0;
   margin: 0;
+  font-size: 16px;
 }
 
 div.newlogin div.topbar {
